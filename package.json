@@ -1,6 +1,6 @@
 {
   "name": "@peerigon/template-public-package",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Boilerplate template to kick start new public packages at Peerigon",
   "keywords": [],
   "homepage": "https://github.com/peerigon/template-public-package#readme",
@@ -25,41 +25,6 @@
     "CHANGELOG.md",
     "README.md"
   ],
-  "scripts": {
-    "prepare": "husky",
-    "test": "run-p test:*",
-    "test:format": "prettier --check .",
-    "test:lint": "eslint --max-warnings 0 --cache .",
-    "test:types": "tsc",
-    "test:unit": "vitest --run",
-    "test:jsr": "jsr publish --dry-run --allow-dirty",
-    "vitest": "vitest",
-    "build": "run-s build:*",
-    "build:clear": "rimraf dist",
-    "build:tsc": "tsc -p tsconfig.build.json",
-    "prepublishOnly": "npm run build",
-    "release": "semantic-release"
-  },
-  "dependencies": {
-    "env-var": "^7.5.0"
-  },
-  "devDependencies": {
-    "@peerigon/configs": "^14.2.0",
-    "@types/node": "^25.3.0",
-    "@vitest/coverage-v8": "^4.0.18",
-    "eslint": "9.39.2",
-    "husky": "^9.1.7",
-    "jsr": "^0.14.3",
-    "lint-staged": "^16.2.7",
-    "npm-run-all2": "^8.0.4",
-    "pin-github-action": "^3.4.0",
-    "prettier": "^3.8.1",
-    "rimraf": "^6.0.1",
-    "semantic-release": "^25.0.3",
-    "typescript": "^5.9.3",
-    "typescript-language-server": "^5.1.3",
-    "vitest": "^4.0.18"
-  },
   "publishConfig": {
     "access": "public",
     "provenance": true
