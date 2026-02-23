@@ -1,6 +1,6 @@
 {
   "name": "@peerigon/template-public-package",
-  "version": "0.0.0-2026-02-23-v1",
+  "version": "0.0.0-2026-02-23-v2",
   "license": "MIT",
   "exports": {
     ".": "./src/main.ts",
