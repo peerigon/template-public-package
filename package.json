@@ -1,6 +1,6 @@
 {
   "name": "@peerigon/template-public-package",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Boilerplate template to kick start new public packages at Peerigon",
   "keywords": [],
   "homepage": "https://github.com/peerigon/template-public-package#readme",
