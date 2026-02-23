@@ -8,21 +8,10 @@ on:
 jobs:
   release:
     runs-on: ubuntu-latest
-    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
-
-    concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }}
-      cancel-in-progress: true
 
     permissions:
-      # Necessary for semantic-release
-      contents: write
-      issues: write
-      pull-requests: write
-      # Necessary for npm publish --provenance
-      # See https://docs.npmjs.com/generating-provenance-statements#example-github-actions-workflow
+      contents: read
       id-token: write
-      packages: write
 
     steps:
       - name: 📥 Checkout repository
@@ -33,8 +22,6 @@ jobs:
         with:
           node-version-file: ".tool-versions"
 
-      - name: 🚀 Release on npm and jsr
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: 🚀 Release on jsr
         run: |
           npx jsr publish

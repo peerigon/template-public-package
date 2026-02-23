@@ -1,10 +1,6 @@
 {
   "name": "@peerigon/template-public-package",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "license": "MIT",
-  "exports": "./src/add.ts",
-  "publish": {
-    "include": ["src", "README.md"]
-  },
-  "$schema": "https://jsr.io/schema/config-file.v1.json"
+  "exports": "./src/add.ts"
 }
