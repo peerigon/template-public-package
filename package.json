@@ -44,13 +44,13 @@
     "env-var": "^7.5.0"
   },
   "devDependencies": {
-    "@peerigon/configs": "^14.2.0",
-    "@types/node": "^25.3.0",
+    "@peerigon/configs": "^14.4.0",
+    "@types/node": "^25.3.5",
     "@vitest/coverage-v8": "^4.0.18",
     "eslint": "9.39.2",
     "husky": "^9.1.7",
     "jsr": "^0.14.3",
-    "lint-staged": "^16.2.7",
+    "lint-staged": "^16.3.2",
     "npm-run-all2": "^8.0.4",
     "pin-github-action": "^3.4.0",
     "prettier": "^3.8.1",
