@@ -19,7 +19,7 @@ jobs:
 
     permissions:
       # Necessary for semantic-release
-      contents: write
+      contents: read
       issues: write
       pull-requests: write
       # Necessary for npm publish --provenance
