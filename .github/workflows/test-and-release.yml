@@ -15,7 +15,7 @@ jobs:
 
     concurrency:
       group: ${{ github.workflow }}-${{ github.ref }}
-      cancel-in-progress: true
+      cancel-in-progress: ${{ github.ref != 'refs/heads/main' && github.ref != 'refs/heads/beta' }}
 
     permissions:
       # Necessary for semantic-release
@@ -39,13 +39,13 @@ jobs:
 
       - name: 🗄 Cache node_modules
         id: cache-node_modules
-        uses: actions/cache@565629816435f6c0b50676926c9b05c254113c0c # main
+        uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7 # main
         with:
           path: "**/node_modules"
           key: node_modules-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
 
       - name: 🗄 Cache .eslintcache
-        uses: actions/cache@565629816435f6c0b50676926c9b05c254113c0c # main
+        uses: actions/cache@668228422ae6a00e4ad889ee87cd7109ec5666a7 # main
         with:
           path: .eslintcache
           key: eslintcache-${{ runner.os }}-${{ hashFiles('**/package-lock.json') }}
