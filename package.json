@@ -32,7 +32,6 @@
   "scripts": {
     "prepare": "husky",
     "test": "run-p test:*",
-    "test:commits": "commitlint --from origin/main --to HEAD --verbose",
     "test:format": "oxfmt --check .",
     "test:lint": "eslint --max-warnings 0 --cache .",
     "test:types": "tsc",

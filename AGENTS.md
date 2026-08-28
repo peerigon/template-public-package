@@ -46,7 +46,7 @@ This project uses npm scripts for all development tasks:
 
 ## Commit Messages
 
-Use [Conventional Commits](https://www.conventionalcommits.org/) for all commit messages (e.g. `feat: ...`, `fix: ...`, `chore: ...`). This is enforced by commitlint, both via a `commit-msg` git hook (`.husky/commit-msg`) and via `npm run test:commits` (config in `commitlint.config.js`), which catches commits made with `--no-verify`.
+Use [Conventional Commits](https://www.conventionalcommits.org/) for all commit messages (e.g. `feat: ...`, `fix: ...`, `chore: ...`). This is enforced by commitlint via a `commit-msg` git hook (`.husky/commit-msg`, config in `commitlint.config.js`) for local feedback, and by `.github/workflows/lint-pr-title.yml`, which lints the PR title in CI — the authoritative check, since `main` uses squash-merge with the PR title as the commit message.
 
 ## Template as a git remote
 
