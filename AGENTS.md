@@ -58,6 +58,18 @@ git remote set-url --push template DISABLED
 
 Verify with `git remote -v`: `template` should show a normal fetch URL and `DISABLED` (or empty) for push.
 
+## Opening pull requests
+
+`gh` can resolve its default repo to `peerigon/template` instead of this repo (observed even without a real GitHub fork relationship — likely due to the `template` remote), so both the web UI's compare page and a fresh `gh` checkout may default a new pull request's base to the **wrong** repo. A PR opened that way targets the template, and checks that depend on this repo (CODEOWNERS, rulesets) then fail against the wrong repository.
+
+Run this once per clone:
+
+```bash
+gh repo set-default <owner>/<repo>
+```
+
+After that `gh pr create` targets the right repo. Verify with `gh repo set-default --view`; if it ever points elsewhere, re-run the command above or use `gh pr create --repo <owner>/<repo>` explicitly.
+
 ## Pulling Updates from Template
 
 If the user is asking you to pull in updates from the template repository, follow the steps below.
