@@ -34,7 +34,7 @@ jobs:
 
     steps:
       - name: 📥 Checkout repository
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: true
           fetch-depth: 0
@@ -42,6 +42,32 @@ jobs:
       - name: 📥 Fetch main branch
         # test:commits needs a local origin/main ref to diff commit messages against
         run: git fetch origin main
+
+      # Linters run in the background while dependencies are installed.
+      # Uses the runner's preinstalled Node.js to read the secretlint version.
+      - name: 🔍 Lint secrets
+        id: lint-secrets
+        background: true
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          secretlint_version="$(node -p "require('./package.json').devDependencies.secretlint")"
+          secretlint_version="${secretlint_version#^}"
+          secretlint_version="${secretlint_version#~}"
+          secretlint_version="${secretlint_version#v}"
+
+          docker run --rm --network none \
+            -v "${PWD}:${PWD}" -w "${PWD}" \
+            "secretlint/secretlint:v${secretlint_version}" \
+            secretlint --format github "**/*"
+
+      - name: 🌈 Lint GitHub Actions
+        id: lint-github-actions
+        background: true
+        uses: zizmorcore/zizmor-action@cc914d7f3750a2d13d75c7f184a1060aa0e9d482 # v0.6.4
+        with:
+          advanced-security: false
 
       - name: 🟢 Setup Node.js
         uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
@@ -81,6 +107,10 @@ jobs:
           CI: true
         run: |
           npm test
+
+      # Background step failures are only reported at a wait step
+      - name: ⏳ Wait for linters
+        wait: [lint-secrets, lint-github-actions]
 
       - name: ⬆️ Upload coverage report
         uses: coverallsapp/github-action@648a8eb78e6d50909eff900e4ec85cab4524a45b # v2.3.6
